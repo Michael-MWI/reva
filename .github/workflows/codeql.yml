@@ -17,7 +17,7 @@ on:
   pull_request:
     branches: ["master"]
     paths-ignore:
-      - "**/*.test.ts"
+      - '**/*.test.ts'
       - packages/reva-admin-react/cypress
       - packages/reva-admin-react/public/vendor/tarteaucitronjs
       - packages/reva-api/test
