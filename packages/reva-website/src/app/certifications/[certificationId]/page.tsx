@@ -85,6 +85,14 @@ const getCertificationQuery = graphql(`
       level
       typeDiplome
       rncpObjectifsContexte
+      prerequisites {
+        id
+        label
+      }
+      juryTypeMiseEnSituationProfessionnelle
+      juryTypeSoutenanceOrale
+      juryEstimatedCost
+      juryPlace
     }
   }
 `);
