@@ -26,6 +26,12 @@ on:
       - packages/reva-website/cypress
       - packages/reva-website/public/vendor/tarteaucitronjs
 
+paths-ignore:
+  - '**/*.test.ts'
+  
+queries:
+  - uses: security-extended
+  
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
