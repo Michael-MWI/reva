@@ -88,6 +88,7 @@ export default function SetCertification() {
 
     if (
       candidacy.certification?.isAapAvailable &&
+      candidacy.typeAccompagnement === "ACCOMPAGNE" &&
       selectedCertification?.isAapAvailable === false
     ) {
       certificationWarningModal.open();
@@ -108,7 +109,7 @@ export default function SetCertification() {
           {
             label: "Diplôme visé",
             linkProps: {
-              href: `/certification/${candidacy.certification?.id}`,
+              href: "/certification/",
             },
           },
         ]}

@@ -1,13 +1,16 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import Tile from "@codegouvfr/react-dsfr/Tile";
 import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 import { FeasibilityUseCandidateForDashboard } from "../dashboard.hooks";
 const FeasibilityBadge = ({
   feasibility,
   isCaduque,
+  candidacyIsAutonome,
 }: {
   feasibility: FeasibilityUseCandidateForDashboard;
   isCaduque: boolean;
+  candidacyIsAutonome: boolean;
 }) => {
   const decision = feasibility?.decision;
   const isDfDemat = feasibility?.feasibilityFormat === "DEMATERIALIZED";
@@ -27,7 +30,7 @@ const FeasibilityBadge = ({
       return <Badge severity="warning">à valider</Badge>;
     case decisionIsDraft && isDfDemat:
       return <Badge severity="info">en cours</Badge>;
-    case decisionIsDraft:
+    case decisionIsDraft || (candidacyIsAutonome && !decision):
       return <Badge severity="info">à envoyer au certificateur</Badge>;
     case decision === "ADMISSIBLE":
       return <Badge severity="success">recevable</Badge>;
@@ -47,22 +50,56 @@ const FeasibilityBadge = ({
 export const FeasibilityTile = ({
   feasibility,
   isCaduque,
+  candidacyIsAutonome,
 }: {
   feasibility: FeasibilityUseCandidateForDashboard;
   isCaduque: boolean;
+  candidacyIsAutonome: boolean;
 }) => {
   const router = useRouter();
+  const isFeasibilityDemat =
+    feasibility?.feasibilityFormat === "DEMATERIALIZED";
+  const feasibilityIsPdf = feasibility?.feasibilityFormat === "UPLOADED_PDF";
+  const feasibilityHasBeenSentToCandidate =
+    !!feasibility?.dematerializedFeasibilityFile?.sentToCandidateAt;
+
+  const feasibilityTileDisabled = useMemo(() => {
+    switch (true) {
+      case candidacyIsAutonome:
+        return false;
+      case !feasibility:
+        return true;
+      case feasibilityHasBeenSentToCandidate || feasibilityIsPdf:
+        return false;
+      default:
+        return true;
+    }
+  }, [
+    feasibility,
+    feasibilityHasBeenSentToCandidate,
+    feasibilityIsPdf,
+    candidacyIsAutonome,
+  ]);
+
+  const feasibilityUrl = isFeasibilityDemat
+    ? "/validate-feasibility"
+    : "/feasibility";
+
   return (
     <Tile
-      disabled={!feasibility}
+      disabled={feasibilityTileDisabled}
       title="Dossier de faisabilité"
       start={
-        <FeasibilityBadge feasibility={feasibility} isCaduque={isCaduque} />
+        <FeasibilityBadge
+          feasibility={feasibility}
+          isCaduque={isCaduque}
+          candidacyIsAutonome={candidacyIsAutonome}
+        />
       }
       small
       buttonProps={{
         onClick: () => {
-          router.push("/validate-feasibility");
+          router.push(feasibilityUrl);
         },
       }}
       imageUrl="/candidat/images/pictograms/contract.svg"

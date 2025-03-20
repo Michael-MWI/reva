@@ -125,6 +125,7 @@ const loginCandidate = async ({ email }: { email: string }) => {
       `Candidat non trouvé`,
     );
   }
+
   const candidate = await getCandidateByKeycloakId({
     keycloakId: account?.id || "",
   });

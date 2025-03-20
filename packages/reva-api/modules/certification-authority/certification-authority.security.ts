@@ -46,10 +46,7 @@ export const resolversSecurityMap = {
   "Mutation.certification_authority_updateCertificationAuthorityDepartments":
     isAdmin,
 
-  "Certification.certificationAuthorityStructure":
-    isAdminOrCertificationRegistryManagerOfCertification,
-
-  "CertificationAuthority.certificationAuthorityStructure": isAdmin,
+  "CertificationAuthority.certificationAuthorityStructures": isAdmin,
   "CertificationAuthority.account": isAdmin,
 
   "CertificationAuthorityLocalAccount.certificationAuthority": isAdmin,
@@ -61,8 +58,12 @@ export const resolversSecurityMap = {
     ]),
   ],
 
+  "Certification.certificationAuthorityStructure": isAnyone,
+
   "CertificationAuthorityStructure.certificationAuthorities": isAdmin,
   "CertificationAuthorityStructure.certificationRegistryManager": isAdmin,
+  "CertificationAuthorityStructure.certifications":
+    isAdminOrCertificationRegistryManagerOfCertification,
 
   "CertificationRegistryManager.certificationAuthorityStructure": isAdmin,
 };

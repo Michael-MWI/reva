@@ -1,6 +1,5 @@
 import { candidateCanSubmitCandidacyToAap } from "@/utils/candidateCanSubmitCandidacyToAap.util";
 import Badge from "@codegouvfr/react-dsfr/Badge";
-import { isAfter } from "date-fns";
 import { useMemo } from "react";
 import { useCandidacyForDashboard } from "./dashboard.hooks";
 import { DashboardBanner } from "./DashboardBanner";
@@ -12,13 +11,12 @@ import { ExperiencesTile } from "./tiles/ExperiencesTile";
 import { FeasibilityTile } from "./tiles/FeasibilityTile";
 import { GoalsTile } from "./tiles/GoalsTile";
 import { NoContactTile } from "./tiles/NoContactTile";
-import { NoRendezVousTile } from "./tiles/NoRendezVousTile";
 import { OrganismTile } from "./tiles/OrganismTile";
-import { RendezVousPedagogiqueTile } from "./tiles/RendezVousPedagogiqueTile";
 import { SubmitCandidacyTile } from "./tiles/SubmitCandidacyTile";
 import TileGroup from "./tiles/TileGroup";
 import { TrainingTile } from "./tiles/TrainingTile";
 import { TypeAccompagnementTile } from "./tiles/TypeAccompagnementTile";
+import { AppointmentTiles } from "./tiles/AppointmentTiles";
 
 const Dashboard = () => {
   const { candidacy, candidacyAlreadySubmitted } = useCandidacyForDashboard();
@@ -60,6 +58,11 @@ const Dashboard = () => {
       candidacyAlreadySubmitted,
     ],
   );
+
+  const candidacyIsAutonome = candidacy?.typeAccompagnement === "AUTONOME";
+  const candidacyIsCaduque = candidacy?.isCaduque;
+  const feasibility = candidacy?.feasibility;
+
   return (
     <div>
       <p className="text-xl">
@@ -88,7 +91,6 @@ const Dashboard = () => {
           >
             <CertificationTile
               hasSelectedCertification={hasSelectedCertification}
-              certificationId={candidacy.certification?.id}
             />
             <TypeAccompagnementTile
               typeAccompagnement={candidacy.typeAccompagnement}
@@ -127,10 +129,15 @@ const Dashboard = () => {
               />
             )}
             <FeasibilityTile
+              feasibility={feasibility}
+              isCaduque={candidacyIsCaduque}
+              candidacyIsAutonome={candidacyIsAutonome}
+            />
+            <DossierValidationTile
               feasibility={candidacy.feasibility}
+              activeDossierDeValidation={candidacy.activeDossierDeValidation}
               isCaduque={candidacy.isCaduque}
             />
-            <DossierValidationTile />
           </div>
         </div>
         <div className="flex flex-col col-span-1 row-span-2 row-start-1 gap-y-8">
@@ -138,14 +145,7 @@ const Dashboard = () => {
             icon="fr-icon-calendar-2-line"
             title="Mes prochains rendez-vous"
           >
-            {candidacy.firstAppointmentOccuredAt &&
-            isAfter(candidacy.firstAppointmentOccuredAt, new Date()) ? (
-              <RendezVousPedagogiqueTile
-                firstAppointmentOccuredAt={candidacy.firstAppointmentOccuredAt}
-              />
-            ) : (
-              <NoRendezVousTile />
-            )}
+            <AppointmentTiles candidacy={candidacy} />
           </TileGroup>
           <TileGroup icon="fr-icon-team-line" title="Mes contacts">
             {!candidacy.organism &&

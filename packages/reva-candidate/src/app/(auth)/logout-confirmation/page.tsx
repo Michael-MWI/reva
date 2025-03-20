@@ -13,21 +13,21 @@ export default function LogoutConfirmation() {
     <PageLayout
       data-test="logout-confirmation"
       title="Confirmation de déconnexion"
+      className="flex flex-col items-center justify-center text-center p-6 pt-8"
     >
-      <div>
-        <h1 className="text-3xl font-bold text-dsfrGray-800">
-          Vous êtes bien déconnecté du service France VAE
-        </h1>
-        <Button
-          data-test="logout-confirmation-back-to-home"
-          className="mt-6"
-          onClick={() => {
-            router.push("/login");
-          }}
-        >
-          Retournez à la page d’accueil
-        </Button>
-      </div>
+      <h1 className="text-3xl font-bold text-dsfrGray-800">
+        Vous êtes bien déconnecté du service France VAE
+      </h1>
+
+      <Button
+        data-test="logout-confirmation-back-to-home"
+        className="mt-6"
+        onClick={() => {
+          router.push("/login");
+        }}
+      >
+        Retournez à la page d’accueil
+      </Button>
     </PageLayout>
   );
 }

@@ -6,10 +6,13 @@ export default function LoginConfirmation() {
   return (
     <PageLayout
       title="Confirmation de connexion"
-      className="flex flex-col items-center justify-center text-center"
+      className="flex flex-col items-center justify-center text-center p-6 pt-8"
       data-test="login-confirmation"
     >
-      <h1>Un e-mail vous a été envoyé.</h1>
+      <h1 className="text-3xl font-bold text-dsfrGray-800">
+        Un e-mail vous a été envoyé.
+      </h1>
+
       <p className="text-lg font-bold">
         Vous avez demandé à accéder à votre compte France VAE.
       </p>
