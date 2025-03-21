@@ -21,15 +21,6 @@ on:
     branches: ["master"]
   schedule:
     - cron: '25 3 * * 1'
-    paths-ignore:
-      - '**/*.test.ts'
-      - packages/reva-admin-react/cypress
-      - packages/reva-admin-react/public/vendor/tarteaucitronjs
-      - packages/reva-api/test
-      - packages/reva-candidate/cypress
-      - packages/reva-candidate/public/vendor/tarteaucitronjs
-      - packages/reva-website/cypress
-      - packages/reva-website/public/vendor/tarteaucitronjs
       
   workflow_dispatch:
     inputs:
@@ -115,3 +106,23 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
+
+      - name: filter-sarif
+        uses: advanced-security/filter-sarif@v1
+        with:
+          patterns: |
+            +**/*
+            -**/*.test.ts
+          input: sarif-results/java.sarif
+          output: sarif-results/java.sarif
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: sarif-results/java.sarif
+
+      - name: Upload loc as a Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sarif-results
+          path: sarif-results
+          retention-days: 10
