@@ -22,6 +22,8 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
+        config-file: ./.github/codeql/high-severity.yml
+        debug: true
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
