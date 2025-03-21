@@ -90,7 +90,11 @@ export const updateCandidate = async ({
   const previousEmail = candidateToUpdate.email;
   const newEmail = email;
 
-  if (newEmail && newEmail !== previousEmail) {
+  if (
+    newEmail &&
+    newEmail !== previousEmail &&
+    (userRoles.includes("admin") || userRoles.includes("candidate"))
+  ) {
     await updateCandidateEmail({ previousEmail, newEmail });
     await sendPreviousEmailCandidateEmail({ email: previousEmail });
     await sendNewEmailCandidateEmail({ email: newEmail });

@@ -10,16 +10,16 @@ import {
 import { askForLogin } from "./features/candidateAskForLogin";
 import { askForRegistration } from "./features/candidateAskForRegistration";
 import { candidateAuthentication } from "./features/candidateAuthentication";
+import { candidateForgotPassword } from "./features/candidateForgotPassword";
+import { candidateLoginWithCredentials } from "./features/candidateLoginWithCredentials";
+import { candidateLoginWithToken } from "./features/candidateLoginWithToken";
+import { candidateResetPassword } from "./features/candidateResetPassword";
 import { getCandidateByKeycloakIdAndCreateCandidacyIfNoActiveOneExists } from "./features/getCandidateByKeycloakIdAndCreateCandidacyIfNoActiveOneExists";
 import { getHighestDegreeById } from "./features/getHighestDegreeById";
 import { getNiveauDeFormationLePlusEleve } from "./features/getNiveauDeFormationLePlusEleve";
 import { updateCandidate } from "./features/updateCandidate";
 import { updateCandidateProfile } from "./features/updateCandidateProfile";
 import { resolversSecurityMap } from "./security/security";
-import { candidateLoginWithToken } from "./features/candidateLoginWithToken";
-import { candidateLoginWithCredentials } from "./features/candidateLoginWithCredentials";
-import { candidateForgotPassword } from "./features/candidateForgotPassword";
-import { candidateResetPassword } from "./features/candidateResetPassword";
 
 const unsafeResolvers = {
   Candidate: {
