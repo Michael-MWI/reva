@@ -21,10 +21,10 @@ on:
       
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to run tests against'
-        type: environment
+      logLevel:
+        description: 'Log level'     
         required: true
+        default: 'warning'
   
 jobs:
   analyze:
