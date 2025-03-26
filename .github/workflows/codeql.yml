@@ -14,18 +14,20 @@ name: "CodeQL Advanced"
 on:
   push:
     branches: ["master"]
+    paths-ignore: 
+      - './.github/workflows'
+      - './.github/codeql'
+
   pull_request:
     branches: ["master"]
-    paths-ignore:
-      - "**/*.test.ts"
-      - packages/reva-admin-react/cypress
-      - packages/reva-admin-react/public/vendor/tarteaucitronjs
-      - packages/reva-api/test
-      - packages/reva-candidate/cypress
-      - packages/reva-candidate/public/vendor/tarteaucitronjs
-      - packages/reva-website/cypress
-      - packages/reva-website/public/vendor/tarteaucitronjs
 
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'    
+  
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
@@ -68,6 +70,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
+          config-file: ./.github/codeql/codeql-base-config.yml
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
           # If you wish to specify custom queries, you can do so here or in a config file.
@@ -76,6 +79,7 @@ jobs:
 
           # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
           # queries: security-extended,security-and-quality
+          queries: security-extended
 
       # If the analyze step fails for one of the languages you are analyzing with
       # "We were unable to automatically build your code", modify the matrix above
