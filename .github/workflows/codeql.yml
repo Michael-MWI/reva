@@ -15,8 +15,8 @@ on:
   push:
     branches: ["master"]
     paths-ignore: 
-      - './.github/workflows'
-      - './.github/codeql'
+      - '.github/workflows'
+      - '.github/codeql'
 
   pull_request:
     branches: ["master"]
