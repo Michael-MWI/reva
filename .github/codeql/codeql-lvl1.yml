@@ -28,7 +28,7 @@ query-filters:
     - very-high
     - high
 
-- exclude:
+  - exclude:
     problem.severity:
       - warning
       - recommendation
