@@ -35,15 +35,4 @@ query-filters:
 paths:
  - 'packages'
 paths-ignore: 
- - '*.test.ts'
- - './.github/worflows'
- # Tests API
- - 'packages/reva-api/test'
- # Dossiers des tests de non regression
- - 'packages/reva-admin-react/cypress'
- - 'packages/reva-candidate/cypress'
- - 'packages/reva-website/cypress'
- # Tarte au citron : vulns managed with Dependabot
- - 'packages/reva-admin-react/public/vendor/tarteaucitronjs'
- - 'packages/reva-candidate/public/vendor/tarteaucitronjs'
- - 'packages/reva-website/public/vendor/tarteaucitronjs'
+  - uses: ./.github/codeql/codeql-path-ignore.qls
