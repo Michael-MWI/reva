@@ -17,7 +17,8 @@ packs:
     
 queries:
     #- uses: security-and-quality
-    - uses: ./.github/codeql/owasp-top-ten.qls
+    #- uses: ./.github/codeql/owasp-top-ten.qls
+    - uses: security
 
 query-filters:
   - include:
