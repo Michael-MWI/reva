@@ -1,0 +1,225 @@
+# -----------------------------------------------------------
+# Query suite documentation can be found at:
+# https://codeql.github.com/docs/codeql-cli/creating-codeql-query-suites/
+# -----------------------------------------------------------
+#
+#
+# -----------------------------------------------------------
+# A complete list of CWE's covered and their Query ID's here:
+# https://codeql.github.com/codeql-query-help/full-cwe/
+# -----------------------------------------------------------
+#
+#
+# -----------------------------------------------------------
+# Uncomment If you want to also use existing CodeQL Query Packs
+#- import: codeql-suites/java-security-extended.qls
+#- import: codeql-suites/javascript-security-extended.qls
+#- import: codeql-suites/python-security-extended.qls
+#- import: codeql-suites/csharp-security-extended.qls
+#- import: custom-queries/lower-csrf-protection-disabled.ql
+# -----------------------------------------------------------
+#
+#
+# -----------------------------------------------------------
+# OWASP Top 10 - Queries for All Languages (sorted alphabetically)
+# 
+# PLEASE NOTE: Problem Severity and Precision are currently
+# commented out starting on line 30. Uncomment to limit your
+# scans further with these parameters.
+# -----------------------------------------------------------
+#- include:
+    #problem.severity:
+    #- medium
+    #- high
+    #- very-high
+    #- critical
+    #precision:
+    #- high
+    #- very-high
+- include:
+    id:
+    #- cpp/access-memory-location-after-end-buffer-strlen
+    #- cpp/alloca-in-loop
+    #- cpp/allocation-too-small
+    #- cpp/ambiguously-signed-bit-field
+    #- cpp/bad-addition-overflow-check
+    #- cpp/bad-strncpy-size
+    #- cpp/badly-bounded-write
+    #- cpp/certificate-not-checked
+    #- cpp/certificate-result-conflation
+    #- cpp/cgi-xss
+    #- cpp/cleartext-storage-buffer
+    #- cpp/cleartext-storage-database
+    #- cpp/cleartext-storage-file
+    #- cpp/cleartext-transmission
+    #- cpp/command-line-injection
+    #- cpp/comparison-with-wider-type
+    #- cpp/dangerous-use-of-exception-blocks
+    #- cpp/dangerous-use-of-transformation-after-operation
+    #- cpp/double-free
+    #- cpp/drop-linux-privileges-outoforder
+    #- cpp/external-entity-expansion
+    #- cpp/insecure-generation-of-filename
+    #- cpp/insufficient-key-size
+    #- cpp/integer-multiplication-cast-to-long
+    #- cpp/late-check-of-function-argument
+    #- cpp/linux-kernel-no-check-before-unsafe-put-user
+    #- cpp/memory-unsafe-function-scan
+    #- cpp/memset-may-be-deleted
+    #- cpp/multiplication-overflow-in-alloc
+    #- cpp/no-space-for-terminator
+    #- cpp/non-constant-format
+    - cs/assembly-path-injection
+    - cs/cleartext-storage-of-sensitive-information
+    - cs/code-injection
+    - cs/command-line-injection
+    - cs/deserialized-delegate
+    - cs/ecb-encryption
+    - cs/empty-password-in-configuration
+    - cs/exposure-of-sensitive-information
+    - cs/hardcoded-connection-string-credentials
+    - cs/hardcoded-credentials
+    - cs/inadequate-rsa-padding
+    - cs/information-exposure-through-exception
+    - cs/insecure-randomness
+    - cs/insecure-sql-connection
+    - cs/insufficient-key-size
+    - cs/ldap-injection
+    - cs/log-forging
+    - cs/loss-of-precision
+    - cs/password-in-configuration
+    - cs/path-injection
+    - cs/request-forgery
+    - cs/resource-injection
+    - cs/second-order-sql-injection
+    - cs/sensitive-data-transmission
+    - cs/serialization-check-bypass
+    - cs/session-reuse
+    - cs/sql-injection
+    - cs/stored-command-line-injection
+    - cs/stored-ldap-injection
+    - cs/uncontrolled-format-string
+    - cs/unsafe-deserialization-untrusted-input
+    - cs/unvalidated-local-pointer-arithmetic
+    - cs/user-controlled-bypass
+    - cs/weak-encryption
+    - cs/web/broad-cookie-domain
+    - cs/web/broad-cookie-path
+    - cs/web/cookie-httponly-not-set
+    - cs/web/cookie-secure-not-set
+    - cs/web/debug-binary
+    - cs/web/directory-browse-enabled
+    - cs/web/disabled-header-checking
+    - cs/web/file-upload
+    - cs/web/missing-global-error-handler
+    - cs/web/missing-token-validation
+    - cs/web/missing-x-frame-options
+    - cs/web/persistent-cookie
+    - cs/web/requiressl-not-set
+    - cs/web/stored-xss
+    - cs/web/unvalidated-url-redirection
+    - cs/web/xss
+    - cs/webclient-path-injection
+    - cs/xml-injection
+    - cs/xml/insecure-dtd-handling
+    - cs/xml/missing-validation
+    - cs/xml/stored-xpath-injection
+    - cs/xml/xpath-injection
+    - cs/zipslip
+    - javascript/ssrf
+    - js/actions/command-injection
+    - js/actions/pull-request-target
+    - js/angular/disabling-sce
+    - js/angular/insecure-url-whitelist
+    - js/bad-code-sanitization
+    - js/bad-tag-filter
+    - js/biased-cryptographic-random
+    - js/build-artifact-leak
+    - js/clear-text-cookie
+    - js/clear-text-logging
+    - js/clear-text-storage-of-sensitive-data
+    - js/client-exposed-cookie
+    - js/client-side-request-forgery
+    - js/client-side-unvalidated-url-redirection
+    - js/code-injection
+    - js/command-line-injection
+    - js/cors-misconfiguration-for-credentials
+    - js/cross-window-information-leak
+    - js/disabling-certificate-validation
+    - js/disabling-electron-websecurity
+    - js/double-escaping
+    - js/empty-password-in-configuration-file
+    - js/enabling-electron-insecure-content
+    - js/exposure-of-private-files
+    - js/file-access-to-http
+    - js/functionality-from-untrusted-source
+    - js/hardcoded-credentials
+    - js/host-header-forgery-in-email-generation
+    - js/html-constructed-from-input
+    - js/http-to-file-access
+    - js/identity-replacement
+    - js/incomplete-hostname-regexp
+    - js/incomplete-html-attribute-sanitization
+    - js/incomplete-multi-character-sanitization
+    - js/incomplete-sanitization
+    - js/incomplete-url-scheme-check
+    - js/incomplete-url-substring-sanitization
+    - js/incorrect-suffix-check
+    - js/indirect-command-line-injection
+    - js/insecure-dependency
+    - js/insecure-download
+    - js/insecure-randomness
+    - js/insecure-temporary-file
+    - js/insufficient-key-size
+    - js/insufficient-password-hash
+    - js/jwt-missing-verification
+    - js/log-injection
+    - js/missing-origin-check
+    - js/missing-rate-limiting
+    - js/missing-token-validation
+    - js/ml-powered/nosql-injection
+    - js/ml-powered/path-injection
+    - js/ml-powered/sql-injection
+    - js/ml-powered/xss
+    - js/password-in-configuration-file
+    - js/path-injection
+    - js/prototype-polluting-assignment
+    - js/prototype-pollution
+    - js/prototype-pollution-utility
+    - js/reflected-xss
+    - js/regex/missing-regexp-anchor
+    - js/remote-property-injection
+    - js/request-forgery
+    - js/resource-exhaustion
+    - js/samesite-none-cookie
+    - js/sensitive-get-query
+    - js/server-side-unvalidated-url-redirection
+    - js/session-fixation
+    - js/shell-command-constructed-from-input
+    - js/shell-command-injection-from-environment
+    - js/sql-injection
+    - js/stack-trace-exposure
+    - js/stored-xss
+    - js/tainted-format-string
+    - js/template-object-injection
+    - js/unnecessary-use-of-cat
+    - js/unsafe-code-construction
+    - js/unsafe-deserialization
+    - js/unsafe-dynamic-method-access
+    - js/unsafe-external-link
+    - js/unsafe-html-expansion
+    - js/unsafe-jquery-plugin
+    - js/useless-regexp-character-escape
+    - js/user-controlled-bypass
+    - js/weak-cryptographic-algorithm
+    - js/xml-bomb
+    - js/xpath-injection
+    - js/xss
+    - js/xss-through-dom
+    - js/xss-through-exception
+    - js/xxe
+    - js/zipslip
+    #- py/bad-tag-filter
+    #- py/bind-socket-all-network-interfaces
+    #- py/clear-text-logging-sensitive-data
+    #- py/clear-text-storage-sensitive-data
