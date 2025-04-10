@@ -1,4 +1,4 @@
- - '*.test.ts'
+ - '**.test.ts'
  # Tests API
  - 'packages/reva-api/test'
  # Dossiers des tests de non regression
