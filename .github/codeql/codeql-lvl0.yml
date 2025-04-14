@@ -22,19 +22,19 @@ queries:
     #- uses: default
     - uses: security-extended
 
-#Mquery-filters:
-  #M- include:
-    #Mtags contain:
-    #M- security
-    #Mprecision:
-    #M- critical
-    #M- very-high
-    #M- high
+query-filters:
+  - include:
+    tags contain:
+    - security
+    precision:
+    - critical
+    - very-high
+    - high
 
-  #M- exclude:
-    #Mproblem.severity:
-      #M- warning
-      #M- recommendation
+  - exclude:
+    problem.severity:
+      - warning
+      - recommendation
 
 paths:
  - 'packages'
@@ -43,6 +43,7 @@ paths-ignore:
   - '**/*.test.ts'
   # Tests API
   - 'packages/reva-api/test'
+  - 'packages/reva-api'
   # Dossiers des tests de non regression
   - 'packages/reva-admin-react/cypress'
   - 'packages/reva-candidate/cypress'
