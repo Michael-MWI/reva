@@ -10,6 +10,7 @@ packs:
     # - codeql/java-queries:codeql-suites/java-security-extended.qls
 
     # JavaScript/TypeScript queries
+    - codeql/javascript-queries
     - advanced-security/codeql-javascript
     - advanced-security/codeql-javascript-extensions
     # security-extended
