@@ -1,6 +1,6 @@
 name: "CodeQL Main branch OWASP top10"
 
-disable-default-queries: true
+#disable-default-queries: true
 
 packs:
     # > Java/Kotlin queries
