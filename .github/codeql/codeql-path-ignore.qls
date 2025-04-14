@@ -1,3 +1,6 @@
+paths:
+ - 'packages'
+paths-ignore: 
  - '**/*.test.ts'
  # Tests API
  - 'packages/reva-api/test'
