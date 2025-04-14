@@ -18,7 +18,8 @@ packs:
 queries:
     #- uses: security-and-quality
     #- uses: ./.github/codeql/owasp-top-ten.qls
-    security
+    default
+    #security-extended
 
 #Mquery-filters:
   #M- include:
