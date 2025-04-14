@@ -16,7 +16,7 @@ packs:
     # security-extended
     - codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
     # A tester absolument https://github.com/GitHubSecurityLab/CodeQL-Community-Packs/
-    - githubsecuritylab/codeql-${{ matrix.language }}-queries
+    - githubsecuritylab/codeql-javascript-queries:suites/javascript-audit.qls
     
 queries:
     #- uses: security-and-quality
