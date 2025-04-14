@@ -1,6 +1,7 @@
  - '**/*.test.ts'
  # Tests API
  - 'packages/reva-api/test'
+ - 'packages/reva-api'
  # Dossiers des tests de non regression
  - 'packages/reva-admin-react/cypress'
  - 'packages/reva-candidate/cypress'
