@@ -2,7 +2,7 @@ name: "CodeQL Main branch OWASP top10"
 
 #disable-default-queries: true
 
-#Mpacks:
+packs:
     # > Java/Kotlin queries
     # - advanced-security/codeql-java
     # - advanced-security/codeql-java-extensions
@@ -10,10 +10,10 @@ name: "CodeQL Main branch OWASP top10"
     # - codeql/java-queries:codeql-suites/java-security-extended.qls
 
     # JavaScript/TypeScript queries
-    #M- advanced-security/codeql-javascript
-    #M- advanced-security/codeql-javascript-extensions
+    - advanced-security/codeql-javascript
+    - advanced-security/codeql-javascript-extensions
     # security-extended
-    #M- codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
+    - codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
     
 queries:
     #- uses: security-and-quality
