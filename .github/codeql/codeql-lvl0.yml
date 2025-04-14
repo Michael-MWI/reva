@@ -36,8 +36,8 @@ query-filters:
       - warning
       - recommendation
 
-paths:
- - 'packages'
-paths-ignore: 
-  - uses: ./.github/codeql/codeql-path-ignore.qls
+#paths:
+# - 'packages'
+#paths-ignore: 
+#  - uses: ./.github/codeql/codeql-path-ignore.qls
   
