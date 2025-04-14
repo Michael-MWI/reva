@@ -10,7 +10,6 @@ packs:
     # - codeql/java-queries:codeql-suites/java-security-extended.qls
 
     # JavaScript/TypeScript queries
-    - default
     - codeql/javascript-queries
     - advanced-security/codeql-javascript
     - advanced-security/codeql-javascript-extensions
@@ -20,8 +19,8 @@ packs:
 queries:
     #- uses: security-and-quality
     #- uses: ./.github/codeql/owasp-top-ten.qls
-    - uses: default
-    #security-extended
+    #- uses: default
+    - uses: security-extended
 
 #Mquery-filters:
   #M- include:
