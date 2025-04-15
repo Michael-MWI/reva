@@ -1,4 +1,4 @@
-name: "CodeQL lvl2 : Security High, correctness & maintainability"
+name: "CodeQL lvl2 : Security, correctness & maintainability"
 
 on:
 #  push:
