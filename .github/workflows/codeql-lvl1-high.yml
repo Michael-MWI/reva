@@ -75,7 +75,7 @@ jobs:
           config-file: ./.github/codeql/codeql-lvl1.yml
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
-
+          debug: true
           queries: security-extended
 
       # If the analyze step fails for one of the languages you are analyzing with
@@ -98,15 +98,3 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
-
-      - name: Debug Analysis
-        uses: zbazztian/codeql-debug@master
-        with:
-          language: ${{ matrix.language }}
-
-      - name: Upload loc as a Build Artifact
-        uses: actions/upload-artifact@v2.2.0
-        with:
-          name: codeql-debug-results
-          path: codeql-debug-results
-          retention-days: 5
