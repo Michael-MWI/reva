@@ -62,6 +62,15 @@ jobs:
         # see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning.
         # If you are analyzing a compiled language, you can modify the 'build-mode' for that language to customize how
         # your codebase is analyzed, see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
+    
+    debug:
+      name: CodeQL Debug Job
+      runs-on: ubuntu-latest
+      strategy:
+        fail-fast: false
+        matrix:
+          language: [ 'javascript' ]
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -69,16 +78,12 @@ jobs:
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
+        id: codeqlinit
         with:
           config-file: ./.github/codeql/codeql-lvl1.yml
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
-          # If you wish to specify custom queries, you can do so here or in a config file.
-          # By default, queries listed here will override any specified in a config file.
-          # Prefix the list here with "+" to use these queries and those in the config file.
 
-          # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
-          # queries: security-extended,security-and-quality
           queries: security-extended
 
       # If the analyze step fails for one of the languages you are analyzing with
@@ -101,35 +106,15 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
-  debug:
-    name: CodeQL Debug Job
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Debug Analysis
+        uses: zbazztian/codeql-debug@master
+        with:
+          language: ${{ matrix.language }}
 
-    - name: Initialize CodeQL
-      id: codeqlinit
-      uses: github/codeql-action/init@v1
-      with:
-        languages: ${{ matrix.language }}
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
-
-    - name: Debug Analysis
-      uses: zbazztian/codeql-debug@master
-      with:
-        language: ${{ matrix.language }}
-
-    - name: Upload loc as a Build Artifact
-      uses: actions/upload-artifact@v2.2.0
-      with:
-        name: codeql-debug-results
-        path: codeql-debug-results
-        retention-days: 30
+      - name: Upload loc as a Build Artifact
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: codeql-debug-results
+          path: codeql-debug-results
+          retention-days: 30
