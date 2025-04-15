@@ -29,7 +29,6 @@ on:
         default: 'warning'    
   
 jobs:
-        
   analyze:
     name: Analyze (${{ matrix.language }})
     # Runner size impacts CodeQL analysis time. To learn more, please see:
@@ -117,4 +116,4 @@ jobs:
         with:
           name: codeql-debug-results
           path: codeql-debug-results
-          retention-days: 30
+          retention-days: 5
