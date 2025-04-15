@@ -1,5 +1,5 @@
 name: "Custom CodeQL Config for lower precision"
-
+# See https://colinsalmcorner.com/fine-tuning-codeql-scans/
 disable-default-queries: true
 
 packs:
@@ -17,7 +17,6 @@ packs:
     # A tester absolument https://github.com/GitHubSecurityLab/CodeQL-Community-Packs/
     - githubsecuritylab/codeql-javascript-queries:suites/javascript-audit.qls
       
-
 queries:
   - uses: security-and-quality
 
