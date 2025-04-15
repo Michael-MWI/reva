@@ -33,7 +33,7 @@ query-filters:
     - very-high
     - high
     - ciritical
-- include:
+  - include:
     kind:
     - problem
     - path-problem
