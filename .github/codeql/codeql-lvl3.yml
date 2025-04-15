@@ -14,6 +14,8 @@ packs:
     - advanced-security/codeql-javascript-extensions
     # security-extended
     - codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
+    # A tester absolument https://github.com/GitHubSecurityLab/CodeQL-Community-Packs/
+    - githubsecuritylab/codeql-javascript-queries:suites/javascript-audit.qls
       
 
 queries:
