@@ -1,5 +1,5 @@
 name: "CodeQL Security & Maintainability"
-
+# See https://colinsalmcorner.com/fine-tuning-codeql-scans/
 disable-default-queries: true
 
 packs:
