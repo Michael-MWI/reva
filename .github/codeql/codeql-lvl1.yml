@@ -16,8 +16,7 @@ packs:
     - codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
     
 queries:
-  - uses: security-and-quality
-  
+  - uses: security-extended
 
 query-filters:
   - include:
