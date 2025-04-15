@@ -29,6 +29,14 @@ on:
         default: 'warning'    
   
 jobs:
+  debug:
+    name: CodeQL Debug Job
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+        
   analyze:
     name: Analyze (${{ matrix.language }})
     # Runner size impacts CodeQL analysis time. To learn more, please see:
@@ -62,14 +70,6 @@ jobs:
         # see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning.
         # If you are analyzing a compiled language, you can modify the 'build-mode' for that language to customize how
         # your codebase is analyzed, see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
-    
-    debug:
-      name: CodeQL Debug Job
-      runs-on: ubuntu-latest
-      strategy:
-        fail-fast: false
-        matrix:
-          language: [ 'javascript' ]
     
     steps:
       - name: Checkout repository
