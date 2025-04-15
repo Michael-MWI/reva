@@ -1,4 +1,4 @@
-name: "CodeQL base config"
+name: "Custom CodeQL Config for lower precision"
 
 disable-default-queries: true
 
@@ -14,23 +14,63 @@ packs:
     - advanced-security/codeql-javascript-extensions
     # security-extended
     - codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
-    
+      
+
 queries:
   - uses: security-and-quality
-  
 
 query-filters:
   - include:
+    kind:
+    - problem
+    - path-problem
+    - alert
+    - path-alert
+    precision:
+    - low
+    - medium
+    - high
+    - very-high
     tags contain:
     - security
+    - correctness
+    - maintainability
+    - readability
+  - include:
+    kind:
+    - problem
+    - path-problem
     precision:
     - critical
     - very-high
     - high
-- exclude:
+    - medium
+    - low
+    security-severity: /([1-9]|10)\.(\d)+/
     problem.severity:
-      - warning
-      - recommendation
+    - error
+    - warning
+    - recommendation
+    tags contain:
+    - security
+  - include:
+    kind:
+    - diagnostic
+  - include:
+    kind:
+    - metric
+    tags contain:
+    - summary
+  - exclude:
+    deprecated: //
+  - exclude:
+    query path:
+      - /^experimental\/.*/
+      - Metrics/Summaries/FrameworkCoverage.ql
+      - /Diagnostics/Internal/.*/
+  - exclude:
+    tags contain:
+      - model-generator
 
 paths:
  - 'packages'
@@ -47,3 +87,6 @@ paths-ignore:
  - 'packages/reva-admin-react/public/vendor/tarteaucitronjs'
  - 'packages/reva-candidate/public/vendor/tarteaucitronjs'
  - 'packages/reva-website/public/vendor/tarteaucitronjs'
+
+
+ 

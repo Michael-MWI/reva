@@ -1,4 +1,4 @@
-name: "CodeQL base config"
+name: "CodeQL Security & Maintainability"
 
 disable-default-queries: true
 
@@ -14,23 +14,22 @@ packs:
     - advanced-security/codeql-javascript-extensions
     # security-extended
     - codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
-    
+      
+
 queries:
   - uses: security-and-quality
   
-
 query-filters:
   - include:
-    tags contain:
-    - security
-    precision:
-    - critical
-    - very-high
-    - high
-- exclude:
-    problem.severity:
-      - warning
-      - recommendation
+      precision:
+      - critical
+      - very-high
+      - high
+      tags contain: 
+      - security
+      - correctness
+      - maintainability
+      security-severity: /([7-9]|10)\.(\d)+/
 
 paths:
  - 'packages'
