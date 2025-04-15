@@ -9,7 +9,7 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
-name: "CodeQL lvl1 : High"
+name: "CodeQL lvl1 : Security and quality/maintainability"
 
 on:
   push:
