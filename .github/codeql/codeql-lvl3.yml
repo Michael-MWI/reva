@@ -65,14 +65,14 @@ query-filters:
     - summary
   - exclude:
     deprecated: //
-  - exclude:
-    query path:
-      - /^experimental\/.*/
-      - Metrics/Summaries/FrameworkCoverage.ql
-      - /Diagnostics/Internal/.*/
-  - exclude:
-    tags contain:
-      - model-generator
+  #- exclude:
+  #  query path:
+  #    - /^experimental\/.*/
+  #    - Metrics/Summaries/FrameworkCoverage.ql
+  #    - /Diagnostics/Internal/.*/
+  #- exclude:
+  #  tags contain:
+  #    - model-generator
 
 paths:
  - 'packages'
