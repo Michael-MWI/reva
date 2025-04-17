@@ -14,19 +14,22 @@ updates:
     - "/packages/reva-admin-react"
     - "/packages/reva-candidate"
     - "/packages/reva-website"
-    - "/infra/strapi"
+    - "/packages/reva-api"
+    # Pas besoin d'anlayser /infra uniquement utilisé pour créer les environnements de dev locaux
+    #- "/infra/strapi
     schedule:
       interval: "weekly"
       
   # Enable version updates for Docker
-  - package-ecosystem: "docker-compose"
+  #- package-ecosystem: "docker-compose"
     # Look for a `Dockerfile` in the `root` directory
     #directory: "/"
-    directories:
-    - "/infra/elastic"
-    - "/infra/ftps"
-    - "/infra/keycloak"
-    - "/infra/postgres"
+    # Pas besoin d'anlayser /infra uniquement utilisé pour créer les environnements de dev locaux
+    #directories:
+    #- "/infra/elastic"
+    #- "/infra/ftps"
+    #- "/infra/keycloak"
+    #- "/infra/postgres"
     # Check for updates once a week
-    schedule:
-      interval: "weekly"
+    #schedule:
+    #  interval: "weekly"
