@@ -7,7 +7,11 @@ updates:
   directory: "/" # Location of package manifests
   schedule:
     interval: "weekly"
-
+  # Ignore npm updates in /infra
+  - package-ecosystem: "npm"
+    directory: "/infra"
+    ignore:
+      - dependency-name: "*"
  - package-ecosystem: "npm"
     directories:
     - "/packages"
