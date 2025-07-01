@@ -1,0 +1,54 @@
+name: "CodeQL Main branch OWASP top10"
+
+#disable-default-queries: true
+
+packs:
+    # > Java/Kotlin queries
+    # - advanced-security/codeql-java
+    # - advanced-security/codeql-java-extensions
+    # security-extended
+    # - codeql/java-queries:codeql-suites/java-security-extended.qls
+
+    # JavaScript/TypeScript queries
+    - codeql/javascript-queries
+    - advanced-security/codeql-javascript
+    - advanced-security/codeql-javascript-extensions
+    
+queries:
+    #- uses: security-and-quality
+    #- uses: ./.github/codeql/owasp-top-ten.qls
+    #- uses: default
+    - uses: security-extended
+
+query-filters:
+  - include:
+    tags contain:
+    - security
+    precision:
+    - critical
+    - very-high
+    - high
+
+  - exclude:
+    problem.severity:
+      - warning
+      - recommendation
+
+
+#  - uses: ./.github/codeql/codeql-path-ignore.qls
+paths:
+ - 'packages'
+paths-ignore: 
+  #- uses: ./.github/codeql/codeql-path-ignore.qls
+  - '**/*.test.ts'
+  # Tests API
+  - 'packages/reva-api/test'
+  # Dossiers des tests de non regression
+  - 'packages/reva-admin-react/cypress'
+  - 'packages/reva-candidate/cypress'
+  - 'packages/reva-website/cypress'
+  # Tarte au citron : vulns managed with Dependabot
+  - 'packages/reva-admin-react/public/vendor/tarteaucitronjs'
+  - 'packages/reva-candidate/public/vendor/tarteaucitronjs'
+  - 'packages/reva-website/public/vendor/tarteaucitronjs'
+  
