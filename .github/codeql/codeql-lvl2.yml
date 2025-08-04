@@ -1,0 +1,89 @@
+name: "CodeQL Security & Maintainability"
+# See https://colinsalmcorner.com/fine-tuning-codeql-scans/
+# See https://codeql.github.com/docs/writing-codeql-queries/metadata-for-codeql-queries/
+disable-default-queries: true
+
+packs:
+    # > Java/Kotlin queries
+    # - advanced-security/codeql-java
+    # - advanced-security/codeql-java-extensions
+    # security-extended
+    # - codeql/java-queries:codeql-suites/java-security-extended.qls
+
+    # JavaScript/TypeScript queries
+    - advanced-security/codeql-javascript
+    - advanced-security/codeql-javascript-extensions
+    # security-extended
+    - codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
+      
+queries:
+  - uses: security-and-quality
+  
+query-filters:
+  - include:
+    kind:
+    - problem
+    - path-problem
+    - alert
+    - path-alert
+    precision:
+    - low
+    - medium
+    - high
+    - very-high
+    tags contain:
+    - security
+    - correctness
+    - maintainability
+    - readability
+  - include:
+    kind:
+    - problem
+    - path-problem
+    precision:
+    - critical
+    - very-high
+    - high
+    - medium
+    - low
+    security-severity: /([1-9]|10)\.(\d)+/
+    problem.severity:
+    - error
+    - warning
+    - recommendation
+    tags contain:
+    - security
+  - include:
+    kind:
+    - diagnostic
+  - include:
+    kind:
+    - metric
+    tags contain:
+    - summary
+  - exclude:
+    deprecated: //
+  - exclude:
+    query path:
+      - /^experimental\/.*/
+      - Metrics/Summaries/FrameworkCoverage.ql
+      - /Diagnostics/Internal/.*/
+  - exclude:
+    tags contain:
+      - model-generator
+
+paths:
+ - 'packages'
+paths-ignore: 
+ - '**/*.test.ts'
+ # Tests API
+ - 'packages/reva-api/test'
+ - 'packages/reva-api'
+ # Dossiers des tests de non regression
+ - 'packages/reva-admin-react/cypress'
+ - 'packages/reva-candidate/cypress'
+ - 'packages/reva-website/cypress'
+ # Tarte au citron : vulns managed with Dependabot
+ - 'packages/reva-admin-react/public/vendor/tarteaucitronjs'
+ - 'packages/reva-candidate/public/vendor/tarteaucitronjs'
+ - 'packages/reva-website/public/vendor/tarteaucitronjs'
